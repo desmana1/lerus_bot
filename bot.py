@@ -40,13 +40,14 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(on_click))
 
-    webhook_url = f"{BASE_URL.rstrip('/')}/telegram-webhook"  # безопасный путь
-    app.run_webhook(
-        listen="0.0.0.0",
-        port=PORT,
-        webhook_url=webhook_url,
-        drop_pending_updates=True,
-    )
+webhook_url = BASE_URL.rstrip('/')  # <-- без /telegram-webhook
+app.run_webhook(
+    listen="0.0.0.0",
+    port=PORT,
+    webhook_url=webhook_url,
+    drop_pending_updates=True,
+)
 
 if __name__ == "__main__":
     main()
+
